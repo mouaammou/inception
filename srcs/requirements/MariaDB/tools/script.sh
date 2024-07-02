@@ -1,3 +1,5 @@
+#	!/bin/bash
+
 # service mariadb start;
 
 # mysql -e "CREATE DATABASE IF NOT EXISTS root;"
