@@ -1,5 +1,4 @@
-#	!/bin/bash
-
+#!/bin/bash
 sleep 10
 
 mkdir /run/php/
