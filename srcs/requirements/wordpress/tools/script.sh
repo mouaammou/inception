@@ -17,8 +17,15 @@ wp core install  \
 	--admin_email=$WP_ADMIN_EMAIL \
 	--allow-root --path='/var/www/wordpress'
 
+# wp core install --url=example.com --title=Example --admin_user=admin --admin_password=admin_password --admin_email=admin@example.com --dbhost=mariadb:3306 --dbuser=root --dbpass=root_password --dbname=wordpress --path='/var/www/wordpress'
+
+
 wp user create  \
 	$WP_USER $WP_USER_EMAIL --role=author \
 	--user_pass=$WP_USER_PASSWORD --allow-root --path='/var/www/wordpress'
 
-/usr/sbin/php-fpm -F
+# Modify PHP-FPM settings using sed
+sed -i 's#;clear_env = no#' /etc/php/8.2/fpm/pool.d/www.conf
+sed -i 's#listen = /run/php/php8.2-fpm.sock#listen = 0.0.0.0:9000#' /etc/php/8.2/fpm/pool.d/www.conf
+
+/usr/sbin/php-fpm8.2 -F
