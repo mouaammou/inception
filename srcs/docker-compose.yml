@@ -27,6 +27,8 @@ services:
         env_file: .env
         ports:
             - "443:443"
+        expose:
+            - "443"
         restart: on-failure
     
     wordpress:
@@ -60,4 +62,5 @@ volumes:
             device: '/home/mouaammo/data/mariadb'
 networks:
     inception:
+        name: inception
         driver: bridge
