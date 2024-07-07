@@ -1,18 +1,24 @@
 #!/bin/bash
-service mariadb start 
+# Start the MariaDB service
 
-echo "CREATE DATABASE IF NOT EXISTS $db1_name ;" > db1.sql
-echo "CREATE USER IF NOT EXISTS '$db1_user'@'%' IDENTIFIED BY '$db1_pwd' ;" >> db1.sql
-echo "GRANT ALL PRIVILEGES ON $db1_name.* TO '$db1_user'@'%' ;" >> db1.sql
-echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '12345' ;" >> db1.sql
-echo "FLUSH PRIVILEGES;" >> db1.sql
+password="123"
+database="test_me"
+user="memouad"
+user_pass="123"
 
-# Execute the SQL script using MySQL client with root user and password
-mysql -u root -p'12345' < db1.sql
+service mariadb start
 
-# Stop the MySQL service
-kill $(cat /var/run/mysqld/mysqld.pid)
+# # Create the database if it doesn't exist
+mysql -u root -p$password -e "CREATE DATABASE IF NOT EXISTS $database;"
 
-# Start MySQL in safe mode
-mysqld_safe
+# # Create the user if it doesn't exist
+mysql -u root -p'123' -e "CREATE USER IF NOT EXISTS '$user'@'localhost' IDENTIFIED BY '$user_pass';"
 
+# # Grant all privileges to the user
+mysql -u root -p'123' -e "GRANT ALL PRIVILEGES ON $database.* TO '$user'@'localhost' IDENTIFIED BY '$user_pass';"
+
+# # Flush privileges to ensure all changes take effect
+mysql -u root -p$password -e "FLUSH PRIVILEGES;"
+
+# # Start MariaDB in safe mode
+exec service mariadb restart;
