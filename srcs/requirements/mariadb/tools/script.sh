@@ -1,12 +1,12 @@
 #!/bin/bash
 # Start the MariaDB service
+service mariadb start
 
 password="123"
 database="test_me"
 user="memouad"
 user_pass="123"
 
-service mariadb start
 
 # # Create the database if it doesn't exist
 mysql -u root -p$password -e "CREATE DATABASE IF NOT EXISTS $database;"
