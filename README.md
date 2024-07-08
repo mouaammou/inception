@@ -54,3 +54,33 @@ To understand why configuring PHP, WordPress, Nginx, and MariaDB is necessary, l
 4. **Database Interaction**: The PHP script sends an SQL query to MariaDB to fetch the latest blog posts.
 5. **Response Generation**: MariaDB returns the data to the PHP script, which processes it and generates an HTML response.
 6. **Content Delivery**: PHP-FPM sends the HTML back to Nginx, which serves it to the user's browser.
+
+# Docker Networking
+
+Docker networking allows containers to communicate with each other, with the Docker host, and with external networks. Docker provides several types of networks, each suited to different use cases. Here's a detailed overview of Docker networking:
+
+## Docker Network Types
+
+### 1. Bridge Network
+- **Default Network**: When you create a container, it is automatically connected to this network unless another network is specified.
+- **Isolated Network**: Containers on the same bridge network can communicate with each other, but are isolated from containers on other bridge networks.
+- **Use Case**: Useful for single-host setups where containers need to communicate.
+
+### 2. Host Network
+- **Network Sharing**: The container shares the host's networking namespace, meaning it will have the same IP address as the host.
+- **No Isolation**: There is no network isolation between the container and the host.
+- **Use Case**: Suitable for scenarios where performance is critical, and network isolation is not needed.
+
+### 3. Overlay Network
+- **Multi-Host Communication**: Enables communication between containers across multiple Docker hosts.
+- **Swarm Mode**: Primarily used in Docker Swarm for creating a multi-host overlay network.
+- **Use Case**: Ideal for distributed systems and microservices running on a cluster of Docker hosts.
+
+### 4. Macvlan Network
+- **Direct Network Access**: Assigns a MAC address to each container, making it appear as a physical device on the network.
+- **Fine-Grained Control**: Allows for more control over network topologies and is useful when you need containers to look like physical devices on the network.
+- **Use Case**: Suitable for legacy applications that require direct network access.
+
+### 5. None Network
+- **No Networking**: Containers do not have any network interfaces and cannot communicate over the network.
+- **Use Case**: Useful for running containers that do not require network connectivity.
