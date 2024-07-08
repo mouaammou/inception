@@ -2,12 +2,7 @@
 # Start the MariaDB service
 service mariadb start
 
-password="123"
-database="test_me"
-user="memouad"
-user_pass="123"
-
-
+mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$password' ;"
 # # Create the database if it doesn't exist
 mysql -u root -p$password -e "CREATE DATABASE IF NOT EXISTS $database;"
 
