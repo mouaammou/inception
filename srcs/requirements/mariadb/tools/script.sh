@@ -1,13 +1,6 @@
 #!/bin/bash
-
-
-
 service mariadb start 
 
-password="123"
-database="test_me"
-user="memouad"
-# user_pass="123"
 
 echo "CREATE DATABASE IF NOT EXISTS $database ;" > db1.sql
 echo "CREATE USER IF NOT EXISTS '$user'@'%' IDENTIFIED BY '$password' ;" >> db1.sql
