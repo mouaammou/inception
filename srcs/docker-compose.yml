@@ -11,12 +11,10 @@ services:
         volumes:
             - mariadb:/var/lib/mysql
         restart: unless-stopped
-        expose:
-            - "3306"
     nginx:
         container_name: nginx
         volumes:
-            - wordpress:/var/www/wordpress
+            - wordpress:/var/www/html
         networks:
             - inception
         depends_on:
@@ -27,15 +25,13 @@ services:
         env_file: .env
         ports:
             - "443:443"
-        expose:
-            - "443"
         restart: on-failure
     
     wordpress:
         container_name: wordpress
         env_file: .env
         volumes:
-            - wordpress:/var/www/wordpress
+            - wordpress:/var/www/html
         networks:
             - inception
         build: 
@@ -44,8 +40,6 @@ services:
         depends_on:
             - mariadb
         restart: on-failure
-        expose: 
-            - "9000"
 
 volumes:
     wordpress:

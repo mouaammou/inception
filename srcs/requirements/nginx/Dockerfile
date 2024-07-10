@@ -2,10 +2,7 @@ FROM debian:bookworm
 
 RUN apt-get update -y && apt-get install nginx -y && \
 	apt-get install curl -y && \
- 	apt-get install vim -y && \
-	apt-get install zsh -y && \
-	apt-get install git -y && \
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" -y
+ 	apt-get install vim -y
 
 RUN mkdir -p /etc/nginx/ssl
 
