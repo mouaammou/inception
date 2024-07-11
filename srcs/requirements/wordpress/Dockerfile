@@ -1,14 +1,9 @@
 FROM debian:bookworm
 
 RUN apt-get update -y && \
-	apt-get install curl -y && \
  	apt-get install vim -y && \
 	apt-get install wget -y && \
 	apt-get install -y php8.2 php8.2-fpm php-mysql
-
-#install wordpress core
-
-#install the wp-cli
 
 COPY tools/script.sh /
 

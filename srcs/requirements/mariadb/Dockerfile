@@ -2,7 +2,6 @@ FROM debian:bookworm
 
 RUN apt-get update -y && apt-get upgrade -y && \
 	apt-get install mariadb-server -y && \
-	apt-get install curl -y && \
  	apt-get install vim -y
 
 COPY conf/50-server.cnf	/etc/mysql/mariadb.conf.d/50-server.cnf
