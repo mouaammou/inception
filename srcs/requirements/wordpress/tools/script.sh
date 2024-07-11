@@ -17,11 +17,6 @@ wp core download --allow-root
 
 mv wp-config-sample.php wp-config.php
 
-# wp config set --allow-root DB_NAME $SQL_DATABASE --path='/var/www/html' 
-# wp config set --allow-root DB_USER $SQL_USER --path='/var/www/html' 
-# wp config set --allow-root DB_USER $SQL_USER --path='/var/www/html' 
-# wp config set --allow-root DB_USER $SQL_USER --path='/var/www/html' 
-
 wp config set --allow-root DB_NAME $SQL_DATABASE --path='/var/www/html'
 wp config set --allow-root DB_USER $SQL_USER --path='/var/www/html'
 wp config set --allow-root DB_PASSWORD $SQL_PASSWORD --path='/var/www/html' 
