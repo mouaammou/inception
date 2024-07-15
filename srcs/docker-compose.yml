@@ -27,7 +27,7 @@ services:
         env_file: .env
         ports:
             - "443:443"
-        restart: on-failure
+        restart: unless-stopped
     
     wordpress:
         container_name: wordpress
@@ -42,7 +42,7 @@ services:
             dockerfile: Dockerfile
         depends_on:
             - mariadb
-        restart: on-failure
+        restart: unless-stopped
 
 volumes:
     wordpress:
