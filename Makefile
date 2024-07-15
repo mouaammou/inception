@@ -1,55 +1,35 @@
-# Variables
-DOCKER_COMPOSE = docker-compose
-COMPOSE_FILE = docker-compose.yml
-PROJECT_DIR = srcs
+COMPOSE_FILE = srcs/docker-compose.yml
 
-# Default target
 all: build up
 
-# Build the Docker images
 build:
-	@echo "Building Docker images..."
-	@$(DOCKER_COMPOSE) -f $(PROJECT_DIR)/$(COMPOSE_FILE) build
+	@docker-compose -f $(COMPOSE_FILE) build
 
-# Start the Docker Compose services
 up:
-	@echo "Starting Docker Compose services..."
-	@$(DOCKER_COMPOSE) -f $(PROJECT_DIR)/$(COMPOSE_FILE) up -d --build
+	@docker-compose -f $(COMPOSE_FILE) up -d
 
-# Stop the Docker Compose services
+rebuild:
+	@docker-compose -f $(COMPOSE_FILE) build --no-cache
+
 down:
-	@echo "Stopping Docker Compose services..."
-	@$(DOCKER_COMPOSE) -f $(PROJECT_DIR)/$(COMPOSE_FILE) down
+	@docker-compose -f $(COMPOSE_FILE) down
 
-# Stop and remove all containers, networks, and volumes
-clean:
-	@echo "Stopping and removing all containers, networks, and volumes..."
-	@$(DOCKER_COMPOSE) -f $(PROJECT_DIR)/$(COMPOSE_FILE) down -v --remove-orphans
+clean: down
+	@docker system prune -af --volumes
 
-# Restart the Docker Compose services
-restart: down up
+re: down up
 
-# View logs from the Docker Compose services
 logs:
-	@$(DOCKER_COMPOSE) -f $(PROJECT_DIR)/$(COMPOSE_FILE) logs -f
+	@docker-compose -f $(COMPOSE_FILE) logs -f
 
-# Remove unused Docker data
-prune:
-	@echo "Removing unused Docker data..."
-	@docker system prune -f
-
-# List running containers
 ps:
-	@$(DOCKER_COMPOSE) -f $(PROJECT_DIR)/$(COMPOSE_FILE) ps
+	@docker-compose -f $(COMPOSE_FILE) ps
 
-# Help target
 help:
-	@echo "Available targets:"
 	@echo "  build    - Build the Docker images"
 	@echo "  up       - Start the Docker Compose services"
 	@echo "  down     - Stop the Docker Compose services"
-	@echo "  clean    - Stop and remove all containers, networks, and volumes"
-	@echo "  restart  - Restart the Docker Compose services"
+	@echo "  re  	  - Restart the Docker Compose services"
 	@echo "  logs     - View logs from the Docker Compose services"
 	@echo "  prune    - Remove unused Docker data"
 	@echo "  ps       - List running containers"
