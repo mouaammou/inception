@@ -6,7 +6,13 @@ build:
 	@docker-compose -f $(COMPOSE_FILE) build
 
 up:
-	@docker-compose -f $(COMPOSE_FILE) up -d
+	@docker-compose -f $(COMPOSE_FILE) up  --build -d
+
+start :
+	@docker-compose -f $(COMPOSE_FILE) start
+
+stop :
+	@docker-compose -f $(COMPOSE_FILE) stop
 
 down:
 	@docker-compose -f $(COMPOSE_FILE) down
