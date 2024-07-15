@@ -8,9 +8,6 @@ build:
 up:
 	@docker-compose -f $(COMPOSE_FILE) up -d
 
-rebuild:
-	@docker-compose -f $(COMPOSE_FILE) build --no-cache
-
 down:
 	@docker-compose -f $(COMPOSE_FILE) down
 
@@ -29,8 +26,8 @@ help:
 	@echo "  build    - Build the Docker images"
 	@echo "  up       - Start the Docker Compose services"
 	@echo "  down     - Stop the Docker Compose services"
+	@echo "  clean    - Remove unused Docker data"
 	@echo "  re  	  - Restart the Docker Compose services"
 	@echo "  logs     - View logs from the Docker Compose services"
-	@echo "  prune    - Remove unused Docker data"
 	@echo "  ps       - List running containers"
 	@echo "  help     - Display this help message"
