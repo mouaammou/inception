@@ -14,7 +14,7 @@ build:
 # Start the Docker Compose services
 up:
 	@echo "Starting Docker Compose services..."
-	@$(DOCKER_COMPOSE) -f $(PROJECT_DIR)/$(COMPOSE_FILE) up -d
+	@$(DOCKER_COMPOSE) -f $(PROJECT_DIR)/$(COMPOSE_FILE) up -d --build
 
 # Stop the Docker Compose services
 down:
